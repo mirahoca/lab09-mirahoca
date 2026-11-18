@@ -9,26 +9,58 @@
 
 
 def two_sum(nums, target):
-    # Outline (write your plan here first):
-    #   ...
-    # TODO: return the indices [i, j] (i < j) of the two numbers in `nums` that add up
-    #   to `target`. Assume there is exactly one answer.
+    # Outline 
+    #  1. use i and j for nums in double loop
+    #  2. nums[i] + nums [j] should equal target, then return [i,j]
+    
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] + nums[j] == target:
+                return [i,j]
+
     pass
 
 
 def max_profit(prices):
     # Outline:
-    #   ...
-    # TODO: `prices[i]` is a stock price on day i. Return the most profit obtainable by
-    #   buying on one day and selling on a LATER day. If no profit is possible, return 0.
+    #  1. create variable for best profit, container = 0
+    #  2. in a double loop, i will represent buying day, j will represent selling day (j will start at, i+1)
+    #  3. profit = prices[j] - prices[i]
+    #  4. if profit is greater than container, replace container with profit
+    #  5. once loops are finished, return container
+
+    container = 0
+
+    for i in range(len(prices)):
+        for j in range(i+1, len(prices)):
+            profit = prices[j] - prices[i]
+            if profit > container:
+                container = profit
+    return container
+
     pass
 
 
 def max_subarray(nums):
     # Outline:
-    #   ...
-    # TODO: return the largest sum of any contiguous (in-a-row) block of numbers in
-    #   `nums`. The list has at least one number.
+    #  1. create variable, container = nums[0]
+    #  2. in a double loop, i will be the position of the block, 
+    #     inside initial loop set total = 0, ability to reset i
+    #  3. in secondary loop, j will go from i to end, total is then added with nums[j]
+    #  4. if the total is greater than the container, then total will replace container 
+    #  5. once loops are finished, return container
+    
+    container = nums[0]
+
+    for i in range(len(nums)):
+        total = 0
+        for j in range(i, len(nums)):
+            total = total + nums[j]
+            if total > container:
+                container = total
+
+    return container
+
     pass
 
 
